@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+
+  - name: server_stat_backup.sh mv job
+    shell: mv /root/monitor/server_stat_backup.sh /root/monitor/server_stat_backup.sh_{{ansible_date_time.date}}
+    ignore_errors: True
+
+  - name: new  server_stat_backup.sh upload
+    template:
+      src: /root/ansible/scrtipt_dist/template/cmd_logging.j2
+      dest: /root/monitor/server_stat_backup.sh
+      force: yes
+      owner: root
+      group: root
+      mode: 0644
+
+
+  - name: crontab line add
+    lineinfile: mv /root/monitor/server_stat_backup.sh /root/monitor/server_stat_backup.sh_{{ansible_date_time.date}}
+    ignore_errors: True
